@@ -7,11 +7,13 @@
   config,
   pkgs,
   ...
-}: {
+}: 
+{
   # You can import other home-manager modules here
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):
     # outputs.homeManagerModules.example
+    inputs.nixvim.homeManagerModules.nixvim
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
@@ -67,6 +69,7 @@
   systemd.user.startServices = "sd-switch";
 
 
+  programs.nixvim.enable = true;
 
   programs.vscode = {
     enable = true;
@@ -136,6 +139,17 @@
     flags = [
       "--disable-up-arrow"
     ];
+  };
+
+  programs.gpg = {
+    enable = true;
+    homedir = "${config.xdg.dataHome}/gnupg";
+  };
+
+  services.gpg-agent = {
+      enable = true;
+      enableFishIntegration = true;
+      pinentryFlavor = "gnome3";
   };
 
   programs.git = {
@@ -233,6 +247,7 @@
     wl-clipboard
 
     bear
+    
     tmux
 
     inkscape
