@@ -20,7 +20,7 @@
   fileSystems."/" = {
     device = params.fs.btrfsDisk;
     fsType = "btrfs";
-    options = ["subvol=n${params.fs.rootSubvol}" "compress=zstd" "noatime"];
+    options = ["subvol=${params.fs.rootSubvol}" "compress=zstd" "noatime"];
   };
 
   fileSystems."/home" = {
