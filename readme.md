@@ -1,14 +1,14 @@
 # MKTI's NixOS dots
 
-List of machines for whom a configuration exists
+List of machines with existing configurations
 
 ## Machine: Jassas (Asus GA401)
 
 On a new system, to bootstrap `home-manager`:
 ```bash
-$ nix --experimental-features "nix-command flakes" shell nixpkgs#git
-$ git clone https://github.com/mktip/dots && cd dots
-$ nix --experimental-features "nix-command flakes" develop
+$ nix --experimental-features "nix-command flakes" flake clone git+https://github.com/mktip/dots --dest ./dots
+$ nix --experimental-features "nix-command flakes" develop ./dots
+$ cd dots/
 ```
 
 
