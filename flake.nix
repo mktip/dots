@@ -11,17 +11,21 @@
     nixpkgs,
     flake-utils,
     ...
-  } @ inputs:
-    flake-utils.lib.eachDefaultSystem
-    (
-      system: let
-        pkgs = nixpkgs.legacyPackages.${system};
-      in {
-        formatter = pkgs.alejandra;
-        devShell = pkgs.mkShell {
-          NIX_CONFIG = "experimental-features = nix-command flakes";
-          nativeBuildInputs = with pkgs; [nix home-manager git];
-        };
-      }
-    );
+  } @ inputs: let
+    systems = ["x86_64-linux"];
+    forAllSystems = function: nixpkgs.lib.genAttrs systems (system: function nixpkgs.legacyPackages.${system});
+  in {
+    formatter = forAllSystems (pkgs: pkgs.alejandra);
+
+    devShells =
+      forAllSystems
+      (
+        pkgs: {
+          default = pkgs.mkShell {
+            NIX_CONFIG = "experimental-features = nix-command flakes";
+            nativeBuildInputs = with pkgs; [nix home-manager git];
+          };
+        }
+      );
+  };
 }

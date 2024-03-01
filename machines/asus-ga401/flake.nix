@@ -23,6 +23,7 @@
   outputs = {
     self,
     nixpkgs,
+    hardware,
     home-manager,
     ...
   } @ inputs: let
@@ -50,7 +51,7 @@
       };
     };
   in {
-    formatter = nixpkgs.legacyPackages.${params.system}.alejandra;
+    formatter.${params.system} = nixpkgs.legacyPackages.${params.system}.alejandra;
 
     overlays = import ./overlays {inherit inputs;};
 
@@ -59,7 +60,7 @@
       ${params.hostname} = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs params;};
         modules = [
-          inputs.hardware.nixosModules.asus-zephyrus-ga401
+          hardware.nixosModules.asus-zephyrus-ga401
 
           ./modules/nixos/nix.nix
 
