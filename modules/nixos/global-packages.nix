@@ -1,11 +1,17 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
+    # nix related
+    nix-index
+
     # essential
     git
     wget
     curl
     tmux
     vim
+
+    # for errno
+    moreutils
 
     # archives
     gnutar

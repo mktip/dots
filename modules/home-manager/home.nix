@@ -105,6 +105,8 @@
   home.packages = with pkgs; [
     firefox
     chromium
+    mpv
+    transmission
     wl-clipboard
 
     bear

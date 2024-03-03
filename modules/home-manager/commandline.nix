@@ -10,7 +10,7 @@
     };
     settings = {
       main = {
-        shell = "${pkgs.${params.shell}}/bin/${params.shell}";
+        shell = params.shell;
         font = "Iosevka Nerd Font Mono:size=12";
         pad = "15x15center";
       };
@@ -40,14 +40,18 @@
       nvim = "nvi";
     };
 
+    shellAbbrs = {
+      hm-switch = "home-manager switch --flake $HOME/docs/dots/machines/asus-ga401#mkti@jassas";
+      nixos-switch = "sudo nixos-rebuild switch --flake $HOME/docs/dots/machines/asus-ga401#jassas";
+    };
+
     shellInit = ''
       set -gx SHELL ${pkgs.fish}/bin/fish
 
       set -gx EDITOR nvim
+      set -gx BROWSER chromium
       set -gx GOPATH $HOME/proj/go/
-      set -gx ZK_NOTEBOOK_DIR $HOME/docs/vault/
 
-      fish_add_path -p $HOME/bin
       fish_add_path -p $HOME/.local/bin
     '';
   };
@@ -55,7 +59,6 @@
   programs.atuin = {
     enable = true;
     enableFishIntegration = true;
-    enableBashIntegration = true;
     settings = {
       search_mode = "fuzzy";
       style = "compact";
