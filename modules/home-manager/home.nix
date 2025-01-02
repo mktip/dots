@@ -1,17 +1,7 @@
-{
-  params,
-  inputs,
-  outputs,
-  lib,
-  config,
-  pkgs,
-  ...
-}: {
+{ params, outputs, config, pkgs, ... }: {
   nixpkgs = {
-    overlays = [
-      outputs.overlays.modifications
-      outputs.overlays.unstable-packages
-    ];
+    overlays =
+      [ outputs.overlays.modifications outputs.overlays.unstable-packages ];
 
     # Configure your nixpkgs instance
     config = {
@@ -32,6 +22,8 @@
 
   xdg.userDirs = {
     enable = true;
+    createDirectories = true;
+
     documents = "${config.home.homeDirectory}/docs";
     desktop = "${config.home.homeDirectory}/desk";
     download = "${config.home.homeDirectory}/down";
@@ -67,26 +59,18 @@
       br = "branch";
       amend = "commit --amend";
     };
-    includes = [
-      {
-        contents = {
-          user = {
-            email = "mo.issa.ok@gmail.com";
-            name = "Mohammad Issa";
-            signingKey = "936DE6C552B5CDAF0A2DBD4428E0696214F6E298";
-          };
-          commit = {
-            gpgSign = true;
-          };
-          init = {
-            defaultBranch = "main";
-          };
-          push = {
-            autoSetupRemote = true;
-          };
+    includes = [{
+      contents = {
+        user = {
+          email = "mo.issa.ok@gmail.com";
+          name = "Mohammad Issa";
+          signingKey = "936DE6C552B5CDAF0A2DBD4428E0696214F6E298";
         };
-      }
-    ];
+        commit = { gpgSign = true; };
+        init = { defaultBranch = "main"; };
+        push = { autoSetupRemote = true; };
+      };
+    }];
   };
 
   programs.fzf = {
@@ -119,7 +103,7 @@
     texlive.combined.scheme-full
     pandoc
 
-    rnix-lsp
+    nixd
     nodePackages_latest.typescript-language-server
 
     zk
@@ -147,7 +131,7 @@
     appimage-run
     nix-alien
 
-    (nerdfonts.override {fonts = ["Iosevka"];})
+    (nerdfonts.override { fonts = [ "Iosevka" ]; })
   ];
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

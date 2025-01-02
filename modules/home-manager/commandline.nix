@@ -3,41 +3,21 @@
   pkgs,
   ...
 }: {
-  programs.foot = {
-    enable = true;
-    server = {
-      enable = true;
-    };
-    settings = {
-      main = {
-        shell = params.shell;
-        font = "Iosevka Nerd Font Mono:size=12";
-        pad = "15x15center";
-      };
-      mouse = {
-        hide-when-typing = "yes";
-      };
-      csd = {
-        preferred = "none";
-      };
-      key-bindings = {
-        fullscreen = "F11";
-      };
-    };
-  };
 
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
-      fish_vi_key_bindings
-      theme.sh one-light
-      watch-colors &
-      disown
+	fish_vi_key_bindings
+
+	atuin init fish --disable-up-arrow | source
+	direnv hook fish | source
+	source {$GHOSTTY_RESOURCES_DIR}/shell-integration/fish/vendor_conf.d/ghostty-shell-integration.fish
     '';
 
     shellAliases = {
-      vim = "nvi";
-      nvim = "nvi";
+      vim = "nvim";
+      ls = "ls --color --group-directories-first";
+      grep = "grep --color";
     };
 
     shellAbbrs = {
@@ -46,13 +26,18 @@
     };
 
     shellInit = ''
-      set -gx SHELL ${pkgs.fish}/bin/fish
+	set -gx SHELL $(which fish)
+	set -gx EDITOR nvim
+	set -gx BROWSER chromium
+	set -gx GOPATH $HOME/proj/go/
+	set -gx PNPM_HOME $HOME/.config/share/pnpm
 
-      set -gx EDITOR nvim
-      set -gx BROWSER chromium
-      set -gx GOPATH $HOME/proj/go/
+	luarocks --lua-version 5.1 path | source
 
-      fish_add_path -p $HOME/.local/bin
+	fish_add_path -p $PNPM_HOME
+	fish_add_path -p $HOME/.local/bin
+	fish_add_path -p $HOME/.config/pear/bin
+	fish_add_path -p $GOPATH/bin
     '';
   };
 
