@@ -41,7 +41,7 @@
     };
 
     shellAbbrs = {
-      hm-switch = "home-manager switch --flake $HOME/docs/dots/machines/asus-ga401#mkti@jassas";
+      hm-switch = "home-manager switch --flake $HOME/docs/dots/machines/asus-ga401#mktips@jassas";
       nixos-switch = "sudo nixos-rebuild switch --flake $HOME/docs/dots/machines/asus-ga401#jassas";
     };
 

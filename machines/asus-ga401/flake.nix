@@ -36,7 +36,7 @@
       timeZone = "Europe/Istanbul";
 
       hostname = "jassas";
-      username = "mkti";
+      username = "mktips";
       fullname = "Mohammad KT. Issa";
 
       shell = "fish";
