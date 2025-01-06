@@ -23,13 +23,13 @@
 
   home.file = {
     ".config/nvim" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./modules/home-manager/config/nvim;
+      source = config.lib.file.mkOutOfStoreSymlink ./config/nvim;
     };
     ".config/ghostty" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./modules/home-manager/config/ghostty;
+      source = config.lib.file.mkOutOfStoreSymlink ./config/ghostty;
     };
     ".local/bin" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./modules/home-manager/config/bin;
+      source = config.lib.file.mkOutOfStoreSymlink ./config/bin;
     };
   };
 
