@@ -20,10 +20,21 @@
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
+
+  home.file = {
+    ".config/nvim" = {
+      source = config.lib.file.mkOutOfStoreSymlink ./modules/home-manager/config/nvim;
+    };
+    ".config/ghostty" = {
+      source = config.lib.file.mkOutOfStoreSymlink ./modules/home-manager/config/ghostty;
+    };
+    ".local/bin" = {
+      source = config.lib.file.mkOutOfStoreSymlink ./modules/home-manager/config/bin;
+    };
+  };
+
   xdg.userDirs = {
     enable = true;
-    createDirectories = true;
-
     documents = "${config.home.homeDirectory}/docs";
     desktop = "${config.home.homeDirectory}/desk";
     download = "${config.home.homeDirectory}/down";
@@ -103,6 +114,7 @@
     texlive.combined.scheme-full
     pandoc
 
+    nixfmt
     nixd
     nodePackages_latest.typescript-language-server
 
@@ -120,18 +132,21 @@
     jq
     gron
 
-    gnomeExtensions.blur-my-shell
+    # gnomeExtensions.blur-my-shell
 
     # Waiting for 273808 github issue merge into 23.11 (if it is to be backported)
     # unstable.supergfxctl
     # unstable.asusctl
-    unstable.neovim
-    unstable.ollama
+    # unstable.neovim
+    # unstable.ollama
+    direnv
+    lua51Packages.ldbus
+
 
     appimage-run
     nix-alien
 
-    (nerdfonts.override { fonts = [ "Iosevka" ]; })
+    # (nerdfonts.override { fonts = [ "Iosevka" ]; })
   ];
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

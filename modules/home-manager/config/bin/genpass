@@ -1,0 +1,1 @@
+dd if=/dev/urandom count=256 2>/dev/null | sha256sum | base64 | xargs echo "" | tr -d ' ' | wl-copy

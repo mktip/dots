@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [ $# -eq 0 ]; then
+  fd . $HOME | fzf --height 10
+else
+  fd . $HOME | fzf --height 10 --select-1 --filter $@ | head --lines 1
+fi

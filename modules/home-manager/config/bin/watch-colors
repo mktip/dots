@@ -1,0 +1,16 @@
+#!/usr/bin/env -S bash --norc --noprofile
+
+forever() {
+  interface=org.freedesktop.portal.Settings
+  member=SettingChanged
+
+  dbus-monitor --profile "interface='$interface',member='$member'" |
+  while read -r line; do
+    update-colors
+  done
+}
+
+trap forever SIGINT
+export -f forever
+
+nohup bash -c forever >/dev/null 2>&1 &

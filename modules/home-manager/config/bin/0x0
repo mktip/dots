@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+if [[ $# -ne 1 ]]; then
+    echo "description: a client tool for 0x0.st file/url hosting server"
+    echo "usage:"
+    echo "       0x0 <file>"
+    echo "       0x0 <url> "
+    echo "examples:"
+    echo "       0x0 ~/.vimrc"
+    echo "       0x0 https://example.com"
+    exit  1
+fi
+
+# check if file exists to upload, if not then assume its a link to shorten
+if [ -f ${@:1} ]; then
+    curl -F'file=@'${@:1}'' https://0x0.st
+else
+    curl -F'shorten='${@:1}'' https://0x0.st
+fi
