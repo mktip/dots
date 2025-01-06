@@ -19,5 +19,5 @@ $ nix --experimental-features "nix-command flakes" develop git+https://github.co
 NixOS and home-manager configs are available under `machines/asus-ga401`:
 ```bash
 $ sudo nixos-rebuild switch --flake "git+https://github.com/mktip/dots?dir=machines/asus-ga401#jassas"
-$ home-manager switch --flake "git+https://github.com/mktip/dots?dir=machines/asus-ga401#mkti@jassas"
+$ home-manager switch --flake "git+https://github.com/mktip/dots?dir=machines/asus-ga401#mktips@jassas"
 ```
