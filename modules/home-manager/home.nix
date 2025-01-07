@@ -20,7 +20,6 @@
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
-
   home.file = {
     ".config/nvim" = {
       source = config.lib.file.mkOutOfStoreSymlink ./config/nvim;
@@ -137,11 +136,9 @@
     # Waiting for 273808 github issue merge into 23.11 (if it is to be backported)
     # unstable.supergfxctl
     # unstable.asusctl
-    # unstable.neovim
     # unstable.ollama
+    unstable.neovim
     direnv
-    lua51Packages.ldbus
-
 
     appimage-run
     nix-alien
