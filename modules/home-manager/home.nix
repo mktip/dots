@@ -56,7 +56,7 @@
     enable = true;
     enableFishIntegration = true;
     enableBashIntegration = true;
-    pinentryFlavor = "gnome3";
+    pinentryPackage = pkgs.pinentry-gnome3;
   };
 
   programs.git = {
@@ -137,7 +137,10 @@
     # unstable.supergfxctl
     # unstable.asusctl
     # unstable.ollama
-    unstable.neovim
+    unstable.ghostty
+    neovim
+
+    syncthing
     direnv
 
     appimage-run

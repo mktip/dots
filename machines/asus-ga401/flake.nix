@@ -3,17 +3,14 @@
 
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    # Neovim in nix
-    nixvim.url = "github:nix-community/nixvim/nixos-23.11";
 
     # Run unpatched binaries
     nix-alien.url = "github:thiagokokada/nix-alien";
 
     # Home manager
-    home-manager.url = "github:nix-community/home-manager/release-23.11";
+    home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # For quick hardware configuration (asus ga401)
