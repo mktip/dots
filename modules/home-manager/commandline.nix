@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
 
   programs.fish = {
     enable = true;
@@ -7,7 +7,7 @@
 
       atuin init fish --disable-up-arrow | source
       direnv hook fish | source
-      source {$GHOSTTY_RESOURCES_DIR}/shell-integration/fish/vendor_conf.d/ghostty-shell-integration.fish
+      source ${pkgs.unstable.ghostty}/share/ghostty/shell-integration/fish/vendor_conf.d/ghostty-shell-integration.fish
     '';
 
     shellAliases = {
@@ -18,9 +18,9 @@
     shellAbbrs = {
       vim = "nvim";
       hm-switch =
-        "home-manager switch --flake $HOME/docs/dots/machines/asus-ga401#mktips@jassas";
+        "home-manager switch --flake $HOME/proj/dots/machines/asus-ga401#mktips@jassas";
       nixos-switch =
-        "sudo nixos-rebuild switch --flake $HOME/docs/dots/machines/asus-ga401#jassas";
+        "sudo nixos-rebuild switch --flake $HOME/proj/dots/machines/asus-ga401#jassas";
     };
 
     functions = { goto = "cd (here $argv)"; };
@@ -31,6 +31,7 @@
       set -gx BROWSER chromium
       set -gx GOPATH $HOME/proj/go/
       set -gx PNPM_HOME $HOME/.config/share/pnpm
+      set -gx TERMINFO_DIRS $HOME/.nix-profile/share/terminfo/
 
       # luarocks --lua-version 5.1 path | source
 

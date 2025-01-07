@@ -100,7 +100,7 @@
     firefox
     chromium
     mpv
-    transmission
+    transmission_4
     wl-clipboard
 
     bear
